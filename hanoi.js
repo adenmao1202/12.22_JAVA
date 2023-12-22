@@ -11,14 +11,14 @@ function hanoiTower(n, source, auxiliary, target) {
         return;
       }
 
-      // 1. Move n-1 disks from the source pole to the auxiliary pole using the target pole as a temporary pole
+      
       hanoiTower(n - 1, source, target, auxiliary);
 
-      // 2. Move the remaining disk from the source pole to the target pole
+      
       target.push(source.pop());
       displayState();
 
-      // 3. Move n-1 disks from the auxiliary pole to the target pole using the source pole as a temporary pole
+      
       hanoiTower(n - 1, auxiliary, source, target);
     }
   
