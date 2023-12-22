@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dice Probability</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 50%;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    #diceImages {
+      margin-top: 20px;
+    }
+
+    #diceImages img {
+      width: 100 px;
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Roll the Dice and display Probabilities</h1>
+
+  <button onclick="rollDice()">Roll the Dice!!! </button>
+
+  <h2>Results:</h2>
+  <table id="resultsTable">
+    <tr>
+      <th>Face</th>
+      <th>Count</th>
+      <th>Probability (%)</th>
+    </tr>
+  </table>
+
+  <div id="diceImages"></div>
+
+  <script>
+    function rollDice() {
+      var faceCount = [0, 0, 0, 0, 0, 0];
+
+      var diceImages = [
+        'die1.png',
+        'die2.png',
+        'die3.png',
+        'die4.png',
+        'die5.png',
+        'die6.png'
+      ];
+
+  
+      document.getElementById('diceImages').innerHTML = '';
+
+      for (var i = 0; i < 12; i++) {
+        var result = Math.floor(Math.random() * 6) + 1;
+        faceCount[result - 1]++;
+
+        
+        var img = document.createElement('img');
+        img.src = diceImages[result - 1];
+        document.getElementById('diceImages').appendChild(img);
+      }
+
+     
+      var table = document.getElementById('resultsTable');
+      table.innerHTML = '<tr><th>Face</th><th>Count</th><th>Probability (%)</th></tr>';
+
+      for (var face = 1; face <= 6; face++) {
+        var count = faceCount[face - 1];
+        var probability = (count / 12) * 100;
+        table.innerHTML += `<tr><td>${face}</td><td>${count}</td><td>${probability.toFixed(2)}</td></tr>`;
+      }
+    }
+  </script>
+
+</body>
+</html>
